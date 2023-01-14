@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
+    <script src="app.js"></script>
+    <script src="Chart.js "></script>
+    <title>chart</title>
+</head>
+<body>
+    <canvas id="canvas" width="600"></canvas>
+    <script>
+        var socket = io();
+        var dspData = []
+        socket.on('data', function(dta) {
+            
+            console.log(dta);
+            dspData.push(dta)
+            document.getElementById('sample').style.opacity = data+"%"; 
+
+
+            var lineChartData = {
+            labels : ["January","Febuary","March","April","May","June","July"],
+            datasets : [
+                {
+                    fillColor : "rgba(220,220,220,0.5)",
+                    strokeColor : "rgba(220,220,220,0.5)",
+                    pointColor : "rgba(220,220,220,0.5)",
+                    pointStrokeColor : "#fff",
+                    data : dspData
+            },
+            
+            ]
+        }
+        var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData)
+
+        });
+        
+    </script>
+</body>
+</html>
